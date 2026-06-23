@@ -1,0 +1,44 @@
+{
+  "name": "notix",
+  "version": "0.1.0",
+  "description": "Minimal and vanilla-like UI framework for the web",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./jsx-runtime": {
+      "types": "./dist/dom/jsx-runtime.d.ts",
+      "import": "./dist/dom/jsx-runtime.js",
+      "default": "./dist/dom/jsx-runtime.js"
+    },
+    "./jsx-dev-runtime": {
+      "types": "./dist/dom/jsx-dev-runtime.d.ts",
+      "import": "./dist/dom/jsx-dev-runtime.js",
+      "default": "./dist/dom/jsx-dev-runtime.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "test": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
+  },
+  "sideEffects": false,
+  "keywords": ["ui", "framework", "reactive", "jsx", "state"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paperboard-dev/notix"
+  }
+}
