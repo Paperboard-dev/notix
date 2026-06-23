@@ -1,6 +1,6 @@
 {
   "name": "notix",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Minimal and vanilla-like UI framework for the web",
   "type": "module",
   "main": "./dist/index.js",
