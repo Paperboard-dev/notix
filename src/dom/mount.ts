@@ -2,7 +2,8 @@ import { NotixElement } from "../types";
 import { effect } from "../core/effect";
 import { setProp } from "./props";
 
-let _document: Document = typeof document !== "undefined" ? document : (null as any);
+let _document: Document =
+    typeof document !== "undefined" ? document : (null as any);
 
 export function setDocument(doc: Document) {
     _document = doc;
@@ -11,9 +12,30 @@ export function setDocument(doc: Document) {
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 const SVG_ROOT_TAGS = new Set([
-    "svg", "circle", "path", "g", "line", "rect", "ellipse", "polygon", "polyline", 
-    "text", "tspan", "defs", "linearGradient", "radialGradient", "stop", "clipPath",
-    "mask", "pattern", "image", "use", "symbol", "animate", "filter", "foreignObject"
+    "svg",
+    "circle",
+    "path",
+    "g",
+    "line",
+    "rect",
+    "ellipse",
+    "polygon",
+    "polyline",
+    "text",
+    "tspan",
+    "defs",
+    "linearGradient",
+    "radialGradient",
+    "stop",
+    "clipPath",
+    "mask",
+    "pattern",
+    "image",
+    "use",
+    "symbol",
+    "animate",
+    "filter",
+    "foreignObject",
 ]);
 
 function isSvgTag(tag: string, parent: Element | null): boolean {
@@ -32,7 +54,11 @@ export function isNotixElement(obj: unknown): obj is NotixElement {
 }
 
 // Main recursive mount function
-export function mount(value: unknown, parent: Element, anchor: Node | null = null): Node[] {
+export function mount(
+    value: unknown,
+    parent: Element,
+    anchor: Node | null = null,
+): Node[] {
     if (value === null || value === undefined || typeof value === "boolean") {
         return [];
     }
@@ -81,15 +107,19 @@ export function mount(value: unknown, parent: Element, anchor: Node | null = nul
         Object.entries(props).forEach(([key, propVal]) => {
             if (key === "children") return;
 
-            if (key.startsWith("on") && key.length > 2 && typeof propVal === "function") {
+            if (
+                key.startsWith("on") &&
+                key.length > 2 &&
+                typeof propVal === "function"
+            ) {
                 const eventName = key.slice(2).toLowerCase();
                 el.addEventListener(eventName, propVal as EventListener);
             } else if (typeof propVal === "function" && key !== "ref") {
                 effect(() => {
-                    setProp(el, key, (propVal as () => unknown)(), effect);
+                    setProp(el, key, (propVal as () => unknown)());
                 });
             } else {
-                setProp(el, key, propVal, effect);
+                setProp(el, key, propVal);
             }
         });
 

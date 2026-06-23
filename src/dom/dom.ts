@@ -10,7 +10,7 @@ if (typeof EventTarget !== "undefined" && !("on" in EventTarget.prototype)) {
             this: EventTarget,
             event: string,
             handler: EventListenerOrEventListenerObject,
-            options?: boolean | AddEventListenerOptions
+            options?: boolean | AddEventListenerOptions,
         ) {
             this.addEventListener(event, handler, options);
             return this;
